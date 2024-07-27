@@ -1,0 +1,38 @@
+{% load static %}
+
+
+
+<div ><img  
+   src="{%  static 'search.gif' %}" alt="Loading" title="Loading" />
+
+   <p>procces is running ....</p>
+   
+</div>
+
+
+
+
+
+ <style>
+
+
+    body{
+        display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    }
+ </style>
+ <script>
+    setTimeout(function () {
+        location.reload(true);
+    }, 3000);
+    window.onpopstate = () => {
+      alert("Clicked back button!");
+  };
+  
+
+
+    
+ </script>

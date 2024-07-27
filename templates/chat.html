@@ -1,0 +1,62 @@
+
+<body>
+
+
+
+
+
+
+<input type="text" id="input1">
+<input type="button" id="submit1">
+
+
+
+<input type="text" id="input2">
+
+
+
+
+<script>
+
+   var username1 = '{{username1}}';
+   var username2 = '{{username2}}';
+
+   const ws = new WebSocket("ws://"+ window.location.host +'/chat/'+username1+'/'+username2+'/');
+    ws.onopen = function(e){
+        console.log('connect');
+
+
+       
+    };
+    ws.onclose = function(e){
+        console.log('dissc');
+    };
+
+    document.querySelector("#submit1").onclick = function (e) {
+        var message = document.querySelector("#input1").value;
+        var currentTime = new Date();
+        var time = currentTime.toLocaleTimeString();
+        ws.send(JSON.stringify({
+            message: message,
+            
+            username:username2,
+        }));
+        console.log('message is send');
+    };
+   
+
+    ws.onmessage = function(e){
+        const data = e.JSON.parse(e);
+        document.querySelector('#input2').value = data.data ;
+     
+
+        console.log('message recieverd');
+
+    }
+
+
+
+
+</script>
+
+</body>
